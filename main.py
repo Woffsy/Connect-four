@@ -11,7 +11,9 @@ brett = Brett()
 
 def main():
     running = True
-    
+    print(brett.brett[1][0].rad)
+    print(brett.brett[1][0].kol)
+    brett.brett[1][0].farge=RED
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
