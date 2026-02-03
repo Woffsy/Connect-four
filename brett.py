@@ -9,7 +9,7 @@ class Rute:
         self.farge: tuple = WHITE
         
     def draw(self, vindu):
-        pg.draw.circle(vindu, self.farge, (self.kol*100+50, self.rad*100+50), CELLE_STR)
+        pg.draw.circle(vindu, self.farge, (self.kol*100+50, VINDU_HOYDE-self.rad*100-50), CELLE_STR)
 
 class Brett:
     def __init__(self) -> None:
