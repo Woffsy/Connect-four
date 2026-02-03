@@ -17,9 +17,9 @@ class Brett:
         self.ant_kol = 7
         self.celle_str = CELLE_STR
         
-        self.brett = [[Rute(r, k, self.celle_str) for k in range(self.ant_kol)] for r in range(self.ant_rad)]
+        self.brett = [[Rute(r, k, self.celle_str) for r in range(self.ant_rad)] for k in range(self.ant_kol)]
     
     def draw(self, vindu):
-        for rad in range(self.ant_rad):
-            for kol in range(self.ant_kol):
-                self.brett[rad][kol].draw(vindu)
+        for kol in range(self.ant_kol):
+            for rad in range(self.ant_rad):
+                self.brett[kol][rad].draw(vindu)

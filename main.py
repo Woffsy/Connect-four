@@ -11,7 +11,9 @@ brett = Brett()
 
 def main():
     running = True
-    brett.brett[1][0].farge = RED
+    brett.brett[6][0].farge = RED
+    brett.brett[6][1].farge = RED
+    brett.brett[2][0].farge = RED
     
     while running:
         for event in pg.event.get():
