@@ -1,10 +1,13 @@
 import pygame as pg 
 from konstanter import *
+from brett import *
 
 pg.init()
 
 vindu = pg.display.set_mode((VINDU_BREDDE, VINDU_HOYDE), pg.RESIZABLE)
 clock = pg.time.Clock()
+
+brett = Brett()
 
 def main():
     running = True
@@ -16,8 +19,9 @@ def main():
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
 
-        vindu.fill(WHITE)
+        vindu.fill(BRETT_FARGE)
         
+        brett.draw(vindu)
         
         pg.display.flip()
         clock.tick(FPS)
