@@ -7,5 +7,6 @@ RED = (255,0,0)
 BRETT_FARGE = (0,0,255)
 CELLE_STR=40
 
+SPILLER_FARGER = {"spiller1": RED, "spiller2": YELLOW}
 
 FPS = 60

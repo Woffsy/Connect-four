@@ -11,9 +11,8 @@ brett = Brett()
 
 def main():
     running = True
-    brett.brett[6][0].farge = RED
-    brett.brett[6][1].farge = RED
-    brett.brett[2][0].farge = RED
+       
+    spiller = "spiller1"
     
     while running:
         for event in pg.event.get():
@@ -21,6 +20,16 @@ def main():
                 running = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
+            elif event.type == pg.MOUSEBUTTONDOWN:
+                mx, my = event.pos
+                for r in brett.brett[mx//100]:
+                    if r.farge == WHITE:
+                        r.farge = SPILLER_FARGER[spiller] 
+                        if spiller == "spiller1":
+                            spiller = "spiller2"
+                        elif spiller == "spiller2":
+                            spiller = "spiller1"
+                        break
 
         vindu.fill(BRETT_FARGE)
         
