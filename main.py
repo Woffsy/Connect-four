@@ -25,10 +25,7 @@ def main():
                 for r in brett.brett[mx//100]:
                     if r.farge == WHITE:
                         r.farge = SPILLER_FARGER[spiller] 
-                        if spiller == "spiller1":
-                            spiller = "spiller2"
-                        elif spiller == "spiller2":
-                            spiller = "spiller1"
+                        spiller = "spiller2" if spiller == "spiller1" else "spiller1"
                         break
 
         vindu.fill(BRETT_FARGE)
