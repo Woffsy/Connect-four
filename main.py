@@ -23,13 +23,15 @@ def main():
             elif event.type == pg.MOUSEBUTTONDOWN:
                 mx, my = event.pos
                 for r in brett.brett[mx//100]:
-                    if r.farge == WHITE:
+                    if r.farge == HOVER_FARGE or r.farge == WHITE:
                         r.farge = SPILLER_FARGER[spiller] 
                         spiller = "spiller2" if spiller == "spiller1" else "spiller1"
                         break
 
         vindu.fill(BRETT_FARGE)
         
+        hover(brett)
+                              
         brett.draw(vindu)
         
         pg.display.flip()

@@ -6,9 +6,18 @@ class Rute:
         self.rad = rad
         self.kol = kol
         self.str = str
+        
+        self.hover = False
         self.farge: tuple = WHITE
         
+        
     def draw(self, vindu):
+        if self.hover and self.farge == WHITE:
+            self.farge = HOVER_FARGE
+        elif not self.hover and self.farge == HOVER_FARGE:
+            self.farge = WHITE
+        elif self.farge in SPILLER_FARGER:
+            self.hover = False
         pg.draw.circle(vindu, self.farge, (self.kol*100+50, VINDU_HOYDE-self.rad*100-50), CELLE_STR)
 
 class Brett:
@@ -23,3 +32,16 @@ class Brett:
         for kol in range(self.ant_kol):
             for rad in range(self.ant_rad):
                 self.brett[kol][rad].draw(vindu)
+                
+def hover(brett):
+    mx2, my2 = pg.mouse.get_pos()
+        
+    for r in brett.brett[mx2//100]:
+        if r.farge == WHITE or r.hover:
+            r.hover = True
+            break
+        
+    for i, k in enumerate(brett.brett):
+        if i != mx2//100:
+            for r in k:
+                    r.hover = False

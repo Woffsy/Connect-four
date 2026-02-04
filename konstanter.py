@@ -9,4 +9,6 @@ CELLE_STR=40
 
 SPILLER_FARGER = {"spiller1": RED, "spiller2": YELLOW}
 
+HOVER_FARGE = (100, 100, 100)
+
 FPS = 60
