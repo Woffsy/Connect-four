@@ -7,7 +7,7 @@ pg.init()
 vindu = pg.display.set_mode((VINDU_BREDDE, VINDU_HOYDE), pg.RESIZABLE)
 clock = pg.time.Clock()
 
-font = pg.font.SysFont("Arial", 48, True)
+font = pg.font.SysFont("Arial", 72, True)
 
 brett = Brett()
 
@@ -42,8 +42,16 @@ def main():
         brett.draw(vindu)
         
         if noenVunnet:
-            vinnerTekst = font.render(f"{spiller} vant", True, (0, 0, 0))
-            vindu.blit(vinnerTekst, (100, 100))
+            outline = 2
+            x, y = 164, 250
+            tekst = f"{spiller} vant"
+            vinnerTekst = font.render(tekst, True, (0, 255, 0))
+            outlineTekst = font.render(tekst, True, (0, 0, 0))
+            
+            for dx, dy in [(-outline, 0), (outline, 0), (0, -outline), (0, outline), (-outline, -outline), (-outline, outline), (outline, -outline), (outline, outline)]:
+                vindu.blit(outlineTekst, (x + dx, y + dy))
+            
+            vindu.blit(vinnerTekst, (x, y))
         
         pg.display.flip()
         clock.tick(FPS)
