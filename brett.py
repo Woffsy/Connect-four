@@ -37,38 +37,32 @@ class Brett:
         antPåRad=0
         for s in range(-3,4): #sjekk skrå ned
             if rute.kol+s in range(0,7) and rute.rad-s in range(0,6):
-                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad-s] == rute.farge else 0
+                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad-s].farge == rute.farge else 0
+                print(f"{antPåRad} skrå ned")
                 if antPåRad>=4:
                     return True
         
         antPåRad=0
         for s in range(-3,4): #sjekk skrå opp
             if rute.kol+s in range(0,7) and rute.rad+s in range(0,6):
-                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad+s] == rute.farge else 0
+                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad+s].farge == rute.farge else 0
+                print(f"{antPåRad} skrå opp")
                 if antPåRad>=4:
                     return True    
         antPåRad=0
         for s in range(-3,4): #sjekk horisontal
             if rute.kol+s in range(0,7):
-                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad] == rute.farge else 0 
+                antPåRad=antPåRad+1 if self.brett[rute.kol+s][rute.rad].farge == rute.farge else 0
+                print(f"{antPåRad} horisontal") 
                 if antPåRad>=4:
                     return True    
         antPåRad=0
         if rute.rad-3>=0: #sjekk horisontal
             for s in range(4):
-                antPåRad+=1 if self.brett[rute.kol][rute.rad-s] == rute.farge else 0
+                antPåRad+=1 if self.brett[rute.kol][rute.rad-s].farge == rute.farge else 0
+                print(f"{antPåRad} vertikal")
                 if antPåRad>=4:
                     return True
-
-
-        antPåRad=0
-        for s in range(7): #sjekk skrå opp
-            pass
-
-        antPåRad=0
-        for s in range(7): #sjekk horisontalt
-            pass
-        #sjekk ned
         
                 
 def hover(brett):

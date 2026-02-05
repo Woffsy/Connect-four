@@ -7,7 +7,7 @@ RED = (255,0,0)
 BRETT_FARGE = (0,0,255)
 CELLE_STR=40
 
-SPILLER_FARGER = {"spiller1": RED, "spiller2": YELLOW}
+SPILLER_FARGER = {"Spiller 1": RED, "Spiller 2": YELLOW}
 
 HOVER_FARGE = (100, 100, 100)
 
