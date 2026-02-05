@@ -23,7 +23,7 @@ def main():
                 running = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
-            elif event.type == pg.MOUSEBUTTONDOWN:
+            elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet:
                 mx, my = event.pos
                 for r in brett.brett[mx//100]:
                     if r.farge == HOVER_FARGE or r.farge == WHITE:
