@@ -17,6 +17,7 @@ class Bot:
             SeierIKolonne=self.sjekkSeierTrekk(self.brett.brett,kol,spiller)
             if SeierIKolonne:
                 return self.brett.brett.index(kol)
+        return False
             
         
     def sjekkSeierTrekk(self,brett,kol,spiller):
