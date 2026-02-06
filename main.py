@@ -42,19 +42,23 @@ def main():
         brett.draw(vindu)
         
         if noenVunnet:
-            outline = 2
-            x, y = 164, 250
-            tekst = f"{spiller} vant"
-            vinnerTekst = font.render(tekst, True, (0, 255, 0))
-            outlineTekst = font.render(tekst, True, (0, 0, 0))
-            
-            for dx, dy in [(-outline, 0), (outline, 0), (0, -outline), (0, outline), (-outline, -outline), (-outline, outline), (outline, -outline), (outline, outline)]:
-                vindu.blit(outlineTekst, (x + dx, y + dy))
-            
-            vindu.blit(vinnerTekst, (x, y))
+            vunnet(spiller)
         
         pg.display.flip()
         clock.tick(FPS)
         
 if __name__ == "__main__":
     main()
+
+
+def vunnet(spiller):
+    outline = 2
+    x, y = 164, 250
+    tekst = f"{spiller} vant"
+    vinnerTekst = font.render(tekst, True, (0, 255, 0))
+    outlineTekst = font.render(tekst, True, (0, 0, 0))
+    
+    for dx, dy in [(-outline, 0), (outline, 0), (0, -outline), (0, outline), (-outline, -outline), (-outline, outline), (outline, -outline), (outline, outline)]:
+        vindu.blit(outlineTekst, (x + dx, y + dy))
+    
+    vindu.blit(vinnerTekst, (x, y))
