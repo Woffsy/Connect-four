@@ -24,7 +24,11 @@ def main():
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
             elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet:
-                noenVunnet, spiller = plasserBrikke(spiller, event) #type: ignore
+                mx, my = event.pos
+                mx -= MARGIN
+                kol = mx//100
+                if kol >= 0 and kol <= 6:
+                    noenVunnet, spiller = plasserBrikke(spiller, event, kol) #type: ignore
 
         vindu.fill(BRETT_FARGE)
         
@@ -51,10 +55,8 @@ def vunnet(spiller):
     
     vindu.blit(vinnerTekst, (x, y))
     
-def plasserBrikke(spiller, event):
-    mx, my = event.pos
-    mx -= MARGIN
-    for r in brett.brett[mx//100]:
+def plasserBrikke(spiller, event, kol):
+    for r in brett.brett[kol]:
         if r.farge == HOVER_FARGE or r.farge == WHITE:
             r.farge = SPILLER_FARGER[spiller]
             if brett.sjekkSeier(r):

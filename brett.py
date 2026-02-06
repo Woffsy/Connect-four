@@ -54,10 +54,8 @@ def hover(brett):
             if r.farge == WHITE or r.farge == HOVER_FARGE:
                 r.hover = True
                 break
-            else:
-                r.hover = False
         
-        for i, k in enumerate(brett.brett):
-            if i != kol:
-                for r in k:
-                    r.hover = False
+    for i, k in enumerate(brett.brett):
+        if i != kol:
+            for r in k:
+                r.hover = False
