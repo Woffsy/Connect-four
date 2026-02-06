@@ -25,15 +25,10 @@ def main():
                 running = False
             elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet:
                 mx, my = event.pos
-                for r in brett.brett[mx//100]:
-                    if r.farge == HOVER_FARGE or r.farge == WHITE:
-                        r.farge = SPILLER_FARGER[spiller]
-                        if brett.sjekkSeier(r):
-                            noenVunnet = True
-                            print(f"{spiller} har vunnet")
-                            break
-                        spiller = "Spiller 2" if spiller == "Spiller 1" else "Spiller 1"
-                        break
+                mx -= MARGIN
+                kol = mx//100
+                if kol >= 0 and kol <= 6:
+                    noenVunnet, spiller = plasserBrikke(spiller, kol) #type: ignore
 
         vindu.fill(BRETT_FARGE)
         
@@ -50,7 +45,7 @@ def main():
 
 def vunnet(spiller):
     outline = 2
-    x, y = 164, 250
+    x, y = 164 + MARGIN, 250
     tekst = f"{spiller} vant"
     vinnerTekst = font.render(tekst, True, (0, 255, 0))
     outlineTekst = font.render(tekst, True, (0, 0, 0))
@@ -59,6 +54,16 @@ def vunnet(spiller):
         vindu.blit(outlineTekst, (x + dx, y + dy))
     
     vindu.blit(vinnerTekst, (x, y))
+    
+def plasserBrikke(spiller, kol):
+    for r in brett.brett[kol]:
+        if r.farge == HOVER_FARGE or r.farge == WHITE:
+            r.farge = SPILLER_FARGER[spiller]
+            if brett.sjekkSeier(r):
+                print(f"{spiller} har vunnet")
+                return True, spiller
+            spiller = "Spiller 2" if spiller == "Spiller 1" else "Spiller 1"
+            return False, spiller
     
 if __name__ == "__main__":
     main()
