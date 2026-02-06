@@ -46,9 +46,6 @@ def main():
         
         pg.display.flip()
         clock.tick(FPS)
-        
-if __name__ == "__main__":
-    main()
 
 
 def vunnet(spiller):
@@ -62,3 +59,6 @@ def vunnet(spiller):
         vindu.blit(outlineTekst, (x + dx, y + dy))
     
     vindu.blit(vinnerTekst, (x, y))
+    
+if __name__ == "__main__":
+    main()
