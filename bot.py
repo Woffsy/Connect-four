@@ -2,6 +2,8 @@ import pygame as pg
 from konstanter import *
 from brett import *
 from spill import *
+pg.init()
+
 class Bot:
     def __init__(self,spiller: str,brett:Brett, spill:Spill):
         self.spiller=spiller
@@ -24,9 +26,9 @@ class Bot:
             self.spill.plasserBrikke(motspiller,motSeierKol)
         
 
-    def sjekkMuligSeier(self,spiller):
+    def sjekkMuligSeier(self,spiller:str):
         for kol in self.brett.brett:
-            SeierIKolonne=self.sjekkSeierTrekk(self.brett.brett,kol,spiller)
+            SeierIKolonne=self.sjekkSeierTrekk(kol,spiller)
             if SeierIKolonne:
                 return self.brett.brett.index(kol)
         return False
@@ -42,7 +44,7 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller].farge else 0
+                                antPåRad=antPåRad+1 if self.brett.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller].farge else 0
                             if antPåRad>=4:
                                 return True
                 return False       
