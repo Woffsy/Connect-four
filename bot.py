@@ -15,7 +15,7 @@ class Bot:
         if self.spiller=="Spiller 1":
             motspiller="Spiller 2"
         else:
-            motspiller="Spiller1"
+            motspiller="Spiller 1"
         
         seierkol=self.sjekkMuligSeier(self.spiller)
         if seierkol != False:
@@ -26,6 +26,14 @@ class Bot:
             self.spill.plasserBrikke(motspiller,motSeierKol)
         
 
+
+
+
+        #last resort
+        for kol in BOTKOLPRIO:
+            if self.brett.brett[kol][5].farge == WHITE or self.brett.brett[kol][5].farge == HOVER_FARGE:
+                self.spill.plasserBrikke(self.spiller,kol)
+                
     def sjekkMuligSeier(self,spiller:str):
         for kol in self.brett.brett:
             SeierIKolonne=self.sjekkSeierTrekk(kol,spiller)
