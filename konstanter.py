@@ -1,4 +1,5 @@
 import pygame as pg
+pg.init()
 
 MARGIN = 200
 VINDU_BREDDE = 700+2*MARGIN
