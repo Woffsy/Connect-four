@@ -22,7 +22,7 @@ class Bot:
         
         motSeierKol=self.sjekkMuligSeier(motspiller)
         if motSeierKol != False:
-            plasserBrikke(motSeierKol)
+            plasserBrikke(motspiller,motSeierKol)
         
 
 
