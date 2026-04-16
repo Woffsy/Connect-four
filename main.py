@@ -40,8 +40,8 @@ def main():
             elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet and spiller != botSinTur:
                 spiller, antTurer, fulltBrett, noenVunnet = spill.spillerPlasserBrikke(event, antTurer, fulltBrett, spiller) #type: ignore
 
-        if spiller == botSinTur:
-            bot.botTrekk() #type: ignore
+        if spiller == botSinTur and not noenVunnet:
+            noenVunnet, spiller = bot.botTrekk() #type: ignore
             antTurer += 1
         
         vindu.fill(BRETT_FARGE)
