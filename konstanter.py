@@ -1,3 +1,5 @@
+import pygame as pg
+
 MARGIN = 200
 VINDU_BREDDE = 700+2*MARGIN
 VINDU_HOYDE = 600
@@ -14,3 +16,5 @@ RETTNINGER=[[-1,1],[0,1],[1,1],[1,0]]
 HOVER_FARGE = (100, 100, 100)
 
 FPS = 60
+
+FONT = pg.font.SysFont("Arial", 72, True)

@@ -1,9 +1,9 @@
 import pygame as pg 
 from konstanter import *
 from brett import *
-from main import *
+from spill import *
 class Bot:
-    def __init__(self,spiller,brett:Brett):
+    def __init__(self,spiller: str,brett:Brett):
         self.spiller=spiller
         self.brett=brett
     
