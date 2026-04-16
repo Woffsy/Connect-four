@@ -10,20 +10,24 @@ class Bot:
         self.brett=brett
         self.spill=spill
     
-   
     def botTrekk(self):
+        kol=self.bestemBotTrekk()
+        return self.spill.plasserBrikke(self.spiller,kol)
+        
+
+    def bestemBotTrekk(self):
         if self.spiller=="Spiller 1":
             motspiller="Spiller 2"
         else:
             motspiller="Spiller 1"
         
-        seierkol=self.sjekkMuligSeier(self.spiller)
-        if seierkol != False:
-            self.spill.plasserBrikke(self.spiller,seierkol)
+        seierKol=self.sjekkMuligSeier(self.spiller)
+        if seierKol != False:
+            return seierKol
         
         motSeierKol=self.sjekkMuligSeier(motspiller)
         if motSeierKol != False:
-            self.spill.plasserBrikke(motspiller,motSeierKol)
+            return motSeierKol
         
 
 
@@ -32,7 +36,7 @@ class Bot:
         #last resort
         for kol in BOTKOLPRIO:
             if self.brett.brett[kol][5].farge == WHITE or self.brett.brett[kol][5].farge == HOVER_FARGE:
-                self.spill.plasserBrikke(self.spiller,kol)
+                return kol
                 
     def sjekkMuligSeier(self,spiller:str):
         for kol in self.brett.brett:
