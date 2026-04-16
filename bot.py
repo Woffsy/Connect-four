@@ -1,7 +1,7 @@
 import pygame as pg 
 from konstanter import *
 from brett import *
-
+from main import *
 class Bot:
     def __init__(self,spiller,brett:Brett):
         self.spiller=spiller
@@ -10,6 +10,21 @@ class Bot:
 
 
     
+    def botTrekk(self):
+        if self.spiller=="Spiller 1":
+            motspiller="Spiller 2"
+        else:
+            motspiller="Spiller1"
+        
+        seierkol=self.sjekkMuligSeier(self.spiller)
+        if seierkol != False:
+            plasserBrikke(self.spiller,seierkol)
+        
+        motSeierKol=self.sjekkMuligSeier(motspiller)
+        if motSeierKol != False:
+            plasserBrikke(motSeierKol)
+        
+
 
 
     def sjekkMuligSeier(self,spiller):
@@ -34,7 +49,8 @@ class Bot:
                             if antPåRad>=4:
                                 return True
                 return False       
-                               
+    
+    def sjekkTapendeTrekk(self)
                         
 
                         
