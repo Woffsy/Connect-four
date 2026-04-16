@@ -44,7 +44,7 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller].farge else 0
+                                antPåRad=antPåRad+1 if self.brett.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller] else 0
                             if antPåRad>=4:
                                 return True
                 return False       
