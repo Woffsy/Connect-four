@@ -50,7 +50,7 @@ def main():
                         pass
         
         if spiller == botSinTur:
-            bot.botTrekk()
+            bot.botTrekk() #type: ignore
         
         vindu.fill(BRETT_FARGE)
         
