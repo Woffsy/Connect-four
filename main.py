@@ -15,15 +15,12 @@ def main():
     running = True
     noenVunnet: bool = False
     fulltBrett: bool = False
-    
-    bot = False
 
     spiller: str = "Spiller 1"
 
     botSinTur = None
 
     if input("Vil du spille mot en bot? y/n\n") == "y":
-        bot = True
         if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
             botSinTur = "Spiller 1"
         else:
