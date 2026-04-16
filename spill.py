@@ -6,6 +6,7 @@ class Spill:
     def __init__(self, vindu:pg.Surface, brett: Brett) -> None:
         self.vindu = vindu
         self.brett = brett
+        
     def vunnet(self, spiller):
         outline = 2
         x, y = 164 + MARGIN, 250
@@ -40,3 +41,17 @@ class Spill:
                     return True, spiller
                 spiller = "Spiller 2" if spiller == "Spiller 1" else "Spiller 1"
                 return False, spiller
+    
+    def spillerPlasserBrikke(self, event:pg.Event, antTurer, fulltBrett, spiller):
+                mx, my = event.pos
+                mx -= MARGIN
+                kol = mx//100
+                if kol >= 0 and kol <= 6:
+                    try:
+                        noenVunnet, spiller = self.plasserBrikke(spiller, kol) #type: ignore
+                        antTurer += 1
+                        if antTurer >= 42:
+                            fulltBrett = True
+                        return spiller, antTurer, fulltBrett, noenVunnet
+                    except:
+                        return spiller, antTurer, fulltBrett, False

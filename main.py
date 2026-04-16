@@ -38,27 +38,17 @@ def main():
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
             elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet and spiller != botSinTur:
-                mx, my = event.pos
-                mx -= MARGIN
-                kol = mx//100
-                if kol >= 0 and kol <= 6:
-                    try:
-                        noenVunnet, spiller = spill.plasserBrikke(spiller, kol) #type: ignore
-                        antTurer += 1
-                        if antTurer >= 42:
-                            fulltBrett = True
-                    except:
-                        pass
+                spiller, antTurer, fulltBrett, noenVunnet = spill.spillerPlasserBrikke(event, antTurer, fulltBrett, spiller) #type: ignore
 
         if spiller == botSinTur:
             bot.botTrekk() #type: ignore
+            antTurer += 1
         
         vindu.fill(BRETT_FARGE)
         
         hover(brett)
                             
         brett.draw(vindu)
-        
         if noenVunnet:
             spill.vunnet(spiller)
         elif fulltBrett:
