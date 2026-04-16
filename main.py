@@ -23,11 +23,11 @@ def main():
     botSinTur = None
 
     if input("Vil du spille mot en bot? y/n\n") == "y":
-        bot = Bot(spiller, brett, spill)
         if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
             botSinTur = "Spiller 1"
         else:
             botSinTur = "Spiller 2"
+        bot = Bot(botSinTur, brett, spill)
        
     
     antTurer = 0
