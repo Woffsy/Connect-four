@@ -7,9 +7,7 @@ class Bot:
         self.spiller=spiller
         self.brett=brett
     
-
-
-    
+   
     def botTrekk(self):
         if self.spiller=="Spiller 1":
             motspiller="Spiller 2"
@@ -24,8 +22,6 @@ class Bot:
         if motSeierKol != False:
             plasserBrikke(motspiller,motSeierKol)
         
-
-
 
     def sjekkMuligSeier(self,spiller):
         for kol in self.brett.brett:
@@ -50,6 +46,7 @@ class Bot:
                                 return True
                 return False       
     
+
     def sjekkTapTrekk(self,brett,kol,spiller):
         for rute in brett.brett[kol]:
             if r.farge == HOVER_FARGE or r.farge == WHITE:
