@@ -1,11 +1,12 @@
 import pygame as pg 
 from konstanter import *
 from brett import *
-from main import *
+from spill import *
 class Bot:
-    def __init__(self,spiller,brett:Brett):
+    def __init__(self,spiller: str,brett:Brett, spill:Spill):
         self.spiller=spiller
         self.brett=brett
+        self.spill=spill
     
    
     def botTrekk(self):
@@ -16,11 +17,11 @@ class Bot:
         
         seierkol=self.sjekkMuligSeier(self.spiller)
         if seierkol != False:
-            plasserBrikke(self.spiller,seierkol)
+            self.spill.plasserBrikke(self.spiller,seierkol)
         
         motSeierKol=self.sjekkMuligSeier(motspiller)
         if motSeierKol != False:
-            plasserBrikke(motspiller,motSeierKol)
+            self.spill.plasserBrikke(motspiller,motSeierKol)
         
 
     def sjekkMuligSeier(self,spiller):
