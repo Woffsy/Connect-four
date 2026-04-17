@@ -12,7 +12,7 @@ class Bot:
     
     def botTrekk(self):
         kol=self.bestemBotTrekk()
-        return self.spill.plasserBrikke(self.spiller,kol)
+        self.spill.plasserBrikke(kol)
         
 
     def bestemBotTrekk(self):

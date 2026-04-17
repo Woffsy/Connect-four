@@ -15,12 +15,9 @@ spill = Spill(vindu, brett)
 
 def main():
     running = True
-    noenVunnet: bool = False
-    fulltBrett: bool = False
-
-    spiller: str = "Spiller 1"
 
     botSinTur = None
+    bot = None
 
     if input("Vil du spille mot en bot? y/n\n") == "y":
         if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
@@ -30,28 +27,26 @@ def main():
         bot = Bot(botSinTur, brett, spill)
        
     
-    antTurer = 0
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
-            elif event.type == pg.MOUSEBUTTONDOWN and not noenVunnet and spiller != botSinTur:
-                spiller, antTurer, fulltBrett, noenVunnet = spill.spillerPlasserBrikke(event, antTurer, fulltBrett, spiller) #type: ignore
+            elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != botSinTur:
+                spill.spillerPlasserBrikke(event)
 
-        if spiller == botSinTur and not noenVunnet:
-            noenVunnet, spiller = bot.botTrekk() #type: ignore
-            antTurer += 1
+        if spill.spiller == botSinTur and not spill.noenVunnet and bot:
+            bot.botTrekk()
         
         vindu.fill(BRETT_FARGE)
         
         hover(brett)
                             
         brett.draw(vindu)
-        if noenVunnet:
-            spill.vunnet(spiller)
-        elif fulltBrett:
+        if spill.noenVunnet:
+            spill.vunnet()
+        elif spill.fulltBrett:
             spill.uavgjort()
         
         pg.display.flip()

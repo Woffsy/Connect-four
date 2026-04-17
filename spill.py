@@ -7,10 +7,15 @@ class Spill:
         self.vindu = vindu
         self.brett = brett
         
-    def vunnet(self, spiller):
+        self.spiller = "Spiller 1"
+        self.antTurer = 0
+        self.noenVunnet = False
+        self.fulltBrett = False
+        
+    def vunnet(self):
         outline = 2
         x, y = 164 + MARGIN, 250
-        tekst = f"{spiller} vant"
+        tekst = f"{self.spiller} vant"
         vinnerTekst = FONT.render(tekst, True, (0, 255, 0))
         outlineTekst = FONT.render(tekst, True, (0, 0, 0))
         
@@ -32,26 +37,26 @@ class Spill:
         self.vindu.blit(uavgjortTekst, (x, y))
         
         
-    def plasserBrikke(self, spiller, kol):
+    def plasserBrikke(self, kol):
         for r in self.brett.brett[kol]:
             if r.farge == HOVER_FARGE or r.farge == WHITE:
-                r.farge = SPILLER_FARGER[spiller]
+                r.farge = SPILLER_FARGER[self.spiller]
                 if self.brett.sjekkSeier(r):
-                    print(f"{spiller} har vunnet")
-                    return True, spiller
-                spiller = "Spiller 2" if spiller == "Spiller 1" else "Spiller 1"
-                return False, spiller
+                    print(f"{self.spiller} har vunnet")
+                    self.noenVunnet = True
+                    return
+                self.spiller = "Spiller 2" if self.spiller == "Spiller 1" else "Spiller 1"
+                self.antTurer += 1
+                if self.antTurer >= 42:
+                    self.fulltBrett = True
+                return
     
-    def spillerPlasserBrikke(self, event:pg.Event, antTurer, fulltBrett, spiller):
+    def spillerPlasserBrikke(self, event:pg.Event,):
                 mx, my = event.pos
                 mx -= MARGIN
                 kol = mx//100
                 if kol >= 0 and kol <= 6:
                     try:
-                        noenVunnet, spiller = self.plasserBrikke(spiller, kol) #type: ignore
-                        antTurer += 1
-                        if antTurer >= 42:
-                            fulltBrett = True
-                        return spiller, antTurer, fulltBrett, noenVunnet
+                        self.plasserBrikke(kol) #type: ignore
                     except:
-                        return spiller, antTurer, fulltBrett, False
+                        pass
