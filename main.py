@@ -15,16 +15,10 @@ spill = Spill(vindu, brett)
 
 def main():
     running = True
-
-    botSinTur = None
     bot = None
-
-    if input("Vil du spille mot en bot? y/n\n") == "y":
-        if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
-            botSinTur = "Spiller 1"
-        else:
-            botSinTur = "Spiller 2"
-        bot = Bot(botSinTur, brett, spill)
+    
+    if spill.spillMotBot() and spill.botSinTur:
+        bot = Bot(spill.botSinTur, brett, spill)
        
     
     while running:
@@ -33,10 +27,10 @@ def main():
                 running = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
-            elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != botSinTur:
+            elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != spill.botSinTur:
                 spill.spillerPlasserBrikke(event)
 
-        if spill.spiller == botSinTur and not spill.noenVunnet and bot:
+        if spill.spiller == spill.botSinTur and not spill.noenVunnet and bot:
             bot.botTrekk()
         
         vindu.fill(BRETT_FARGE)

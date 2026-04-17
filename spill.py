@@ -12,6 +12,8 @@ class Spill:
         self.noenVunnet = False
         self.fulltBrett = False
         
+        self.botSinTur = None
+        
     def vunnet(self):
         outline = 2
         x, y = 164 + MARGIN, 250
@@ -60,3 +62,12 @@ class Spill:
                         self.plasserBrikke(kol) #type: ignore
                     except:
                         pass
+    
+    def spillMotBot(self):
+        if input("Vil du spille mot en bot? y/n\n") == "y":
+            if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
+                self.botSinTur = "Spiller 1"
+            else:
+                self.botSinTur = "Spiller 2"
+            return True
+        return False
