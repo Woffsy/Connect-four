@@ -19,7 +19,6 @@ def main():
     
     if spill.spillMotBot() and spill.botSinTur:
         bot = Bot(spill.botSinTur, brett, spill)
-       
     
     while running:
         for event in pg.event.get():
@@ -38,10 +37,7 @@ def main():
         hover(brett)
                             
         brett.draw(vindu)
-        if spill.noenVunnet:
-            spill.vunnet()
-        elif spill.fulltBrett:
-            spill.uavgjort()
+        spill.gameState()
         
         pg.display.flip()
         clock.tick(FPS)

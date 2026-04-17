@@ -71,3 +71,9 @@ class Spill:
                 self.botSinTur = "Spiller 2"
             return True
         return False
+    
+    def gameState(self):
+        if self.noenVunnet:
+            self.vunnet()
+        elif self.fulltBrett:
+            self.uavgjort()
