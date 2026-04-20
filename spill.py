@@ -93,8 +93,8 @@ class Spill:
                 if event.type == pg.MOUSEBUTTONDOWN and knapp.rektangel.collidepoint(event.pos):
                     if knapp.tekst == "Ja":
                         self.meny = []
-                        self.meny.append(Knapp(225, 250, "Spiller 1"))
-                        self.meny.append(Knapp(575, 250, "Spiller 2"))
+                        self.meny.append(Knapp(200, 250, "Spiller 1"))
+                        self.meny.append(Knapp(550, 250, "Spiller 2"))
                         self.tekst = f"Hvilken spiller skal botten være?"
                         self.tekstX = 100
                         
