@@ -3,6 +3,7 @@ from konstanter import *
 from brett import *
 from bot import *
 from spill import *
+from knapper import *
 
 pg.init()
 
@@ -17,19 +18,19 @@ def main():
     running = True
     bot = None
     
-    if spill.spillMotBot() and spill.botSinTur:
-        bot = Bot(spill.botSinTur, brett, spill)
-    
     while running:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 running = False
-            elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != spill.botSinTur:
+            elif not spill.startet:
+                if spill.spillMotBotEvent(event) in ("Spiller 1", "Spiller 2"):
+                    bot = Bot(brett, spill)
+            elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != spill.botSinTur and spill.startet:
                 spill.spillerPlasserBrikke(event)
 
-        if spill.spiller == spill.botSinTur and not spill.noenVunnet and bot:
+        if spill.spiller == spill.botSinTur and not spill.noenVunnet and bot and spill.startet:
             bot.botTrekk()
         
         vindu.fill(BRETT_FARGE)
@@ -38,6 +39,9 @@ def main():
                             
         brett.draw(vindu)
         spill.gameState()
+        if not spill.startet:
+            spill.spillMotBot()
+
         
         pg.display.flip()
         clock.tick(FPS)

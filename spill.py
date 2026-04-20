@@ -1,5 +1,6 @@
 from brett import *
 from konstanter import *
+from knapper import *
 import pygame as pg
 
 class Spill:
@@ -8,11 +9,20 @@ class Spill:
         self.brett = brett
         
         self.spiller = "Spiller 1"
-        self.antTurer = 0
+        self.antTurer:int = 0
         self.noenVunnet = False
         self.fulltBrett = False
         
         self.botSinTur = None
+        
+        self.startet = False
+        
+        self.meny:list[Knapp] = []
+        self.meny.append(Knapp(400, 250, "Ja"))
+        self.meny.append(Knapp(550, 250, "Nei"))
+        
+        self.tekst = f"Vil du spille mot en bot?"
+        self.tekstX = 200
         
     def vunnet(self):
         outline = 2
@@ -64,13 +74,41 @@ class Spill:
                         pass
     
     def spillMotBot(self):
-        if input("Vil du spille mot en bot? y/n\n") == "y":
-            if int(input("Skal botten være spiller 1 eller 2? 1/2\n")) == 1:
-                self.botSinTur = "Spiller 1"
-            else:
-                self.botSinTur = "Spiller 2"
-            return True
-        return False
+        pg.draw.rect(self.vindu, BRETT_FARGE, (0, 0, VINDU_BREDDE, VINDU_HOYDE))
+        outline = 2
+        tekst = FONT.render(self.tekst, True, (0, 255, 0))
+        outlineTekst = FONT.render(self.tekst, True, (0, 0, 0))
+        
+        for dx, dy in [(-outline, 0), (outline, 0), (0, -outline), (0, outline), (-outline, -outline), (-outline, outline), (outline, -outline), (outline, outline)]:
+            self.vindu.blit(outlineTekst, (self.tekstX + dx, 40 + dy))
+        
+        self.vindu.blit(tekst, (self.tekstX, 40))
+        
+        for knapp in self.meny:
+            knapp.tegn(self.vindu, WHITE)
+    
+    def spillMotBotEvent(self, event):
+        if event.type == pg.MOUSEBUTTONDOWN:
+            for knapp in self.meny:
+                if event.type == pg.MOUSEBUTTONDOWN and knapp.rektangel.collidepoint(event.pos):
+                    if knapp.tekst == "Ja":
+                        self.meny = []
+                        self.meny.append(Knapp(225, 250, "Spiller 1"))
+                        self.meny.append(Knapp(575, 250, "Spiller 2"))
+                        self.tekst = f"Hvilken spiller skal botten være?"
+                        self.tekstX = 100
+                    elif knapp.tekst == "Nei":
+                        self.startet = True
+                    elif knapp.tekst == "Spiller 1":
+                        self.botSinTur = "Spiller 1"
+                        self.startet = True
+                        return "Spiller 1"
+                    elif knapp.tekst == "Spiller 2":
+                        self.startet = True
+                        self.botSinTur = "Spiller 2"
+                        return "Spiller 2"
+
+        
     
     def gameState(self):
         if self.noenVunnet:

@@ -1,3 +1,4 @@
+from __future__ import annotations
 import pygame as pg 
 from konstanter import *
 from brett import *
@@ -5,8 +6,8 @@ from spill import *
 pg.init()
 
 class Bot:
-    def __init__(self,spiller: str,brett:Brett, spill:Spill):
-        self.spiller=spiller
+    def __init__(self,brett:Brett, spill:Spill):
+        self.spiller=spill.botSinTur if spill.botSinTur else ""
         self.brett=brett
         self.spill=spill
     
