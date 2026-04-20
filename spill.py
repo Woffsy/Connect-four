@@ -97,19 +97,20 @@ class Spill:
                         self.meny.append(Knapp(575, 250, "Spiller 2"))
                         self.tekst = f"Hvilken spiller skal botten være?"
                         self.tekstX = 100
+                        
                     elif knapp.tekst == "Nei":
                         self.startet = True
+                        
                     elif knapp.tekst == "Spiller 1":
                         self.botSinTur = "Spiller 1"
                         self.startet = True
                         return "Spiller 1"
+                    
                     elif knapp.tekst == "Spiller 2":
                         self.startet = True
                         self.botSinTur = "Spiller 2"
                         return "Spiller 2"
 
-        
-    
     def gameState(self):
         if self.noenVunnet:
             self.vunnet()
