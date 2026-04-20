@@ -10,19 +10,19 @@ class Spill:
         
         self.spiller = "Spiller 1"
         self.antTurer:int = 0
-        self.noenVunnet = False
-        self.fulltBrett = False
+        self.noenVunnet:bool = False
+        self.fulltBrett:bool = False
         
-        self.botSinTur = None
+        self.botSinTur:str|None = None
         
-        self.startet = False
+        self.startet:bool = False
         
         self.meny:list[Knapp] = []
         self.meny.append(Knapp(400, 250, "Ja"))
         self.meny.append(Knapp(550, 250, "Nei"))
         
-        self.tekst = f"Vil du spille mot en bot?"
-        self.tekstX = 200
+        self.tekst:str = f"Vil du spille mot en bot?"
+        self.tekstX:int = 200
         
     def vunnet(self):
         outline = 2

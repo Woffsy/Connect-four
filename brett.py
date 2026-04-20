@@ -2,7 +2,7 @@ import pygame as pg
 from konstanter import *
 
 class Rute:
-    def __init__(self, rad, kol, str) -> None:
+    def __init__(self, rad:int, kol:int, str:int) -> None:
         self.rad = rad
         self.kol = kol
         self.str = str
@@ -22,8 +22,8 @@ class Rute:
 
 class Brett:
     def __init__(self) -> None:
-        self.ant_rad = 6
-        self.ant_kol = 7
+        self.ant_rad:int = 6
+        self.ant_kol:int = 7
         self.celle_str = CELLE_STR
         
         self.brett = [[Rute(r, k, self.celle_str) for r in range(self.ant_rad)] for k in range(self.ant_kol)]
