@@ -87,7 +87,7 @@ class Spill:
         for knapp in self.meny:
             knapp.tegn(self.vindu, WHITE)
     
-    def spillMotBotEvent(self, event):
+    def spillMotBotEvent(self, event: pg.Event):
         if event.type == pg.MOUSEBUTTONDOWN:
             for knapp in self.meny:
                 if event.type == pg.MOUSEBUTTONDOWN and knapp.rektangel.collidepoint(event.pos):
