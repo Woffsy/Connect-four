@@ -23,12 +23,10 @@ class Bot:
             motspiller="Spiller 1"
         
         seierKol=self.sjekkMuligSeier(self.spiller)
-        print(f"seierKol: {seierKol}")
         if seierKol != "False": #False = 0 så når seierKol var i kolonne 0 så kjører ikke returnen
             return seierKol
         
         motSeierKol=self.sjekkMuligSeier(motspiller)
-        print(f"motSeierKol: {motSeierKol}")
         if motSeierKol != "False": #False = 0 så når motSeierKol var i kolonne 0 så kjører ikke returnen
             return motSeierKol
         
