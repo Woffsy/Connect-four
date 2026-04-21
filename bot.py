@@ -33,7 +33,7 @@ class Bot:
             return motSeierKol
         
         self.fjernTapendeTrekk(self.spiller)
-        print(self.muligeTrekk)
+        
         #har tapt
         if len(self.muligeTrekk)==0:
             for kol in BOTKOLPRIO:
