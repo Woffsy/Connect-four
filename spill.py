@@ -24,6 +24,8 @@ class Spill:
         self.tekst:str = f"Vil du spille mot en bot?"
         self.tekstX:int = 200
         
+        self.restartKnapp = RestartKnapp(15, 50, "Restart")
+        
     def vunnet(self):
         outline = 2
         x, y = 164 + MARGIN, 250
@@ -54,7 +56,6 @@ class Spill:
             if r.farge == HOVER_FARGE or r.farge == WHITE:
                 r.farge = SPILLER_FARGER[self.spiller]
                 if self.brett.sjekkSeier(r):
-                    print(f"{self.spiller} har vunnet")
                     self.noenVunnet = True
                     return
                 self.spiller = "Spiller 2" if self.spiller == "Spiller 1" else "Spiller 1"
@@ -110,9 +111,38 @@ class Spill:
                         self.startet = True
                         self.botSinTur = "Spiller 2"
                         return "Spiller 2"
+    
+    def restart(self, event: pg.Event):
+        if self.restartKnapp.rektangel.collidepoint(event.pos):
+            self.spiller = "Spiller 1"
+            self.antTurer = 0
+            self.noenVunnet = False
+            self.fulltBrett = False
+            self.botSinTur = None
+            self.startet = False
+            self.meny:list[Knapp] = []
+            self.meny.append(Knapp(400, 250, "Ja"))
+            self.meny.append(Knapp(550, 250, "Nei"))
+            self.tekst:str = f"Vil du spille mot en bot?"
+            self.tekstX:int = 200
+            for kol in self.brett.brett:
+                for rad in kol:
+                    rad.farge = WHITE
+    
+    def restartKnappTegn(self):
+        self.restartKnapp.tegn(self.vindu, WHITE)
 
     def gameState(self):
         if self.noenVunnet:
             self.vunnet()
         elif self.fulltBrett:
             self.uavgjort()
+    
+    def tegnAlt(self):
+        hover(self.brett)
+        self.vindu.fill(BRETT_FARGE)
+        self.restartKnappTegn()
+        self.brett.draw(self.vindu)
+        self.gameState()
+        if not self.startet:
+            self.spillMotBot()

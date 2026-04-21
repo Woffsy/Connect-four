@@ -29,20 +29,14 @@ def main():
                     bot = Bot(brett, spill)
             elif event.type == pg.MOUSEBUTTONDOWN and not spill.noenVunnet and spill.spiller != spill.botSinTur and spill.startet:
                 spill.spillerPlasserBrikke(event)
+            if event.type == pg.MOUSEBUTTONDOWN and spill.startet:
+                spill.restart(event)
 
-        if spill.spiller == spill.botSinTur and not spill.noenVunnet and bot and spill.startet:
+        if spill.spiller == spill.botSinTur and not spill.noenVunnet and bot and spill.startet and not spill.fulltBrett:
             bot.botTrekk()
-        
-        vindu.fill(BRETT_FARGE)
-        
-        hover(brett)
                             
-        brett.draw(vindu)
-        spill.gameState()
-        if not spill.startet:
-            spill.spillMotBot()
+        spill.tegnAlt()
 
-        
         pg.display.flip()
         clock.tick(FPS)
     

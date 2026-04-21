@@ -20,4 +20,5 @@ HOVER_FARGE = (100, 100, 100)
 FPS = 60
 
 FONT = pg.font.SysFont("Arial", 72, True)
+FONTRESTART = pg.font.SysFont("Arial", 48, True)
 BOTKOLPRIO=[3,4,2,5,1,6,0]
