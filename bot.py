@@ -23,11 +23,13 @@ class Bot:
             motspiller="Spiller 1"
         
         seierKol=self.sjekkMuligSeier(self.spiller)
-        if seierKol != False:
+        print(f"seierKol: {seierKol}")
+        if seierKol != "False": #False = 0 så når seierKol var i kolonne 0 så kjører ikke returnen
             return seierKol
         
         motSeierKol=self.sjekkMuligSeier(motspiller)
-        if motSeierKol != False:
+        print(f"motSeierKol: {motSeierKol}")
+        if motSeierKol != "False": #False = 0 så når motSeierKol var i kolonne 0 så kjører ikke returnen
             return motSeierKol
         
 
@@ -44,7 +46,7 @@ class Bot:
             SeierIKolonne=self.sjekkSeierTrekk(kol,spiller)
             if SeierIKolonne:
                 return self.brett.brett.index(kol)
-        return False
+        return "False"
             
         
     def sjekkSeierTrekk(self,kol:list[Rute],spiller:str):
