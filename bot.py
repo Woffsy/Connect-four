@@ -3,6 +3,7 @@ import pygame as pg
 from konstanter import *
 from brett import *
 from spill import *
+from random import choice
 pg.init()
 
 class Bot:
@@ -33,7 +34,7 @@ class Bot:
             return motSeierKol
         
         self.fjernTapendeTrekk(self.spiller)
-        
+
         #har tapt
         if len(self.muligeTrekk)==0:
             for kol in BOTKOLPRIO:
@@ -41,7 +42,7 @@ class Bot:
                     return kol
         
         #last resort
-        return self.muligeTrekk[0]
+        return choice(self.muligeTrekk)
         
         
 
@@ -72,7 +73,7 @@ class Bot:
         kolNummer=0
         for kol in self.brett.brett:
             if self.sjekkTapendeTrekk(kol,spiller):
-                self.muligeTrekk.remove(kolNummer)
+                self.muligeTrekk[:] = [x for x in self.muligeTrekk if x != kolNummer]
             kolNummer+=1
             
 

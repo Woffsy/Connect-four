@@ -21,4 +21,4 @@ FPS = 60
 
 FONT = pg.font.SysFont("Arial", 72, True)
 FONTRESTART = pg.font.SysFont("Arial", 48, True)
-BOTKOLPRIO=[3,4,2,5,1,6,0]
+BOTKOLPRIO=[0]*2+[1]*3+[2]*5+[3]*8+[4]*5+[5]*3+[6]*2
