@@ -3,7 +3,7 @@ import pygame as pg
 from konstanter import *
 from brett import *
 from spill import *
-from random import choice
+from secrets import choice
 pg.init()
 
 class Bot:
