@@ -10,7 +10,7 @@ class Bot:
     def __init__(self,brett:Brett, spill:Spill):
         self.spiller=spill.botSinTur if spill.botSinTur else ""
         self.motspiller="Spiller 2" if self.spiller=="Spiller 1" else "Spiller 1"
-        self.brett=brett
+        self.brett=brett.brett
         self.spill=spill
         self.muligeTrekk=[]
 
@@ -22,7 +22,7 @@ class Bot:
     def bestemBotTrekk(self):
         self.muligeTrekk=[]
         for kol in BOTKOLPRIO:
-                if self.brett.brett[kol][5].farge == WHITE or self.brett.brett[kol][5].farge == HOVER_FARGE:
+                if self.brett[kol][5].farge == WHITE or self.brett[kol][5].farge == HOVER_FARGE:
                     self.muligeTrekk.append(kol)
         
         seierKol=self.sjekkMuligSeier(self.spiller)
@@ -38,7 +38,7 @@ class Bot:
         #har tapt
         if len(self.muligeTrekk)==0:
             for kol in BOTKOLPRIO:
-                if self.brett.brett[kol][5].farge == WHITE or self.brett.brett[kol][5].farge == HOVER_FARGE:
+                if self.brett[kol][5].farge == WHITE or self.brett[kol][5].farge == HOVER_FARGE:
                     return kol
         
         #last resort
@@ -47,10 +47,10 @@ class Bot:
         
 
     def sjekkMuligSeier(self,spiller:str):
-        for kol in self.brett.brett:
+        for kol in self.brett:
             SeierIKolonne=self.sjekkSeierTrekk(kol,spiller)
             if SeierIKolonne:
-                return self.brett.brett.index(kol)
+                return self.brett.index(kol)
         return "False"
             
        
@@ -64,7 +64,7 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller] else 0
+                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller] else 0
                             if antPåRad>=4:
                                 return True
                 return False       
@@ -89,13 +89,19 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett.brett[rute.kol+s*r[0]][ruteNummer+s*r[1]].farge == SPILLER_FARGER[self.motspiller] else 0
+                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][ruteNummer+s*r[1]].farge == SPILLER_FARGER[self.motspiller] else 0
                             if antPåRad>=4:
                                 return True
                 return False             
 
                         
-                        
+    def sjekkTettpakketTrekk(self):
+        pass
+
+    def sjekkFirere(rute,spiller):
+        pass
+
+    def sjekkFirer(self,rad,kol,retning)                    
         
         
     
