@@ -56,7 +56,7 @@ class Bot:
        
     def sjekkSeierTrekk(self,kol:list[Rute],spiller:str):
         for rute in kol:
-            if rute.farge == HOVER_FARGE or rute.farge == WHITE:
+            if not rute.spiller:
                 for r in RETTNINGER:
                     antPåRad=0
                     for s in range(-3,4):
@@ -64,7 +64,7 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == SPILLER_FARGER[spiller] else 0
+                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].spiller == spiller else 0
                             if antPåRad>=4:
                                 return True
                 return False       
@@ -81,7 +81,7 @@ class Bot:
         ruteNummer=0
         for rute in kol:
             ruteNummer+=1
-            if (rute.farge == HOVER_FARGE or rute.farge == WHITE) and ruteNummer<6:
+            if not rute.spiller and ruteNummer<6:
                 for r in RETTNINGER:
                     antPåRad=0
                     for s in range(-3,4):
@@ -89,7 +89,7 @@ class Bot:
                             if s == 0:
                                 antPåRad+=1
                             else:
-                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][ruteNummer+s*r[1]].farge == SPILLER_FARGER[self.motspiller] else 0
+                                antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][ruteNummer+s*r[1]].spiller == self.motspiller else 0
                             if antPåRad>=4:
                                 return True
                 return False             
@@ -105,7 +105,7 @@ class Bot:
         antallSelv=0
         if kol+3*retning[0] in range(0,7) and rad+3*retning[1] in range(0,6):
             for s in range(0,4):
-                
+                pass
                      
         
         

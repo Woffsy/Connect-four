@@ -2,13 +2,15 @@ import pygame as pg
 from konstanter import *
 
 class Rute:
-    def __init__(self, rad:int, kol:int, str:int) -> None:
+    def __init__(self, rad:int, kol:int, stor:int) -> None:
         self.rad = rad
         self.kol = kol
-        self.str = str
+        self.str = stor
         
         self.hover = False
         self.farge: tuple = WHITE
+        
+        self.spiller:None|str = None
         
         
     def draw(self, vindu):
@@ -18,6 +20,8 @@ class Rute:
             self.farge = WHITE
         elif self.farge in SPILLER_FARGER:
             self.hover = False
+        elif self.spiller:
+            self.farge = SPILLER_FARGER[self.spiller]
         pg.draw.circle(vindu, self.farge, (self.kol*100+50+MARGIN, VINDU_HOYDE-self.rad*100-50), CELLE_STR)
 
 class Brett:
@@ -39,7 +43,7 @@ class Brett:
             antPåRad=0
             for s in range(-3,4):
                 if rute.kol+s*r[0] in range(0,7) and rute.rad+s*r[1] in range(0,6):
-                    antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].farge == rute.farge else 0
+                    antPåRad=antPåRad+1 if self.brett[rute.kol+s*r[0]][rute.rad+s*r[1]].spiller == rute.spiller else 0
                     if antPåRad>=4:
                         return True
             

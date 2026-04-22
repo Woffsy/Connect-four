@@ -53,8 +53,8 @@ class Spill:
         
     def plasserBrikke(self, kol):
         for r in self.brett.brett[kol]:
-            if r.farge == HOVER_FARGE or r.farge == WHITE:
-                r.farge = SPILLER_FARGER[self.spiller]
+            if not r.spiller:
+                r.spiller = self.spiller
                 if self.brett.sjekkSeier(r):
                     self.noenVunnet = True
                     return
@@ -127,6 +127,7 @@ class Spill:
             self.tekstX:int = 200
             for kol in self.brett.brett:
                 for rad in kol:
+                    rad.spiller = None
                     rad.farge = WHITE
     
     def restartKnappTegn(self):
