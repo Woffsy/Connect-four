@@ -98,7 +98,7 @@ class Bot:
     def sjekkTettpakketTrekk(self):
         pass
 
-    def sjekkFirere(rute,spiller):
+    def sjekkFirere(self,rute,spiller):
         pass
 
     def sjekkFirer(self,rad,kol,retning):
