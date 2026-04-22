@@ -101,8 +101,12 @@ class Bot:
     def sjekkFirere(self,rute,spiller):
         pass
 
-    def sjekkFirer(self,rad,kol,retning):
-        pass                   
+    def sjekkFirer(self,rad,kol,retning,spiller):
+        antallSelv=0
+        if kol+3*retning[0] in range(0,7) and rad+3*retning[1] in range(0,6):
+            for s in range(0,4):
+                
+                     
         
         
     
