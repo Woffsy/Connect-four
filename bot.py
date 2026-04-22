@@ -71,7 +71,7 @@ class Bot:
     
     def fjernTapendeTrekk(self,spiller:str):
         kolNummer=0
-        for kol in self.brett.brett:
+        for kol in self.brett:
             if self.sjekkTapendeTrekk(kol,spiller):
                 self.muligeTrekk[:] = [x for x in self.muligeTrekk if x != kolNummer]
             kolNummer+=1
@@ -101,7 +101,8 @@ class Bot:
     def sjekkFirere(rute,spiller):
         pass
 
-    def sjekkFirer(self,rad,kol,retning)                    
+    def sjekkFirer(self,rad,kol,retning):
+        pass                   
         
         
     
